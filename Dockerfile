@@ -9,6 +9,7 @@ ARG user=jenkins
 USER root
 RUN apt-get update -y && apt-get install -y curl sudo
 RUN curl -sSL https://get.docker.com/ | sh
+RUN usermod -aG docker ${user}
 COPY jenkins-agent /usr/local/bin/jenkins-agent
 RUN chmod +x /usr/local/bin/jenkins-agent &&\
     ln -s /usr/local/bin/jenkins-agent /usr/local/bin/jenkins-slave
