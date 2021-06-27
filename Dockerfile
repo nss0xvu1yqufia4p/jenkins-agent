@@ -16,6 +16,7 @@ RUN chmod +x /usr/local/bin/jenkins-agent &&\
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 RUN chmod +x ./kubectl
 RUN mv ./kubectl /usr/local/bin
+RUN echo $(stat -c %g /var/run/docker.sock)
 USER ${user}
 
 ENTRYPOINT ["/usr/local/bin/jenkins-agent"]
